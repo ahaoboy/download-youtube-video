@@ -1,0 +1,28 @@
+name: download
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: install
+        run: | 
+            npm i
+            npm run build
+            
+      - name: Release
+        uses: ahaoboy/download-youtube-video@v1
+
+        with:
+          url: https://www.youtube.com/watch?v=nn9jdwEkplc
+
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
