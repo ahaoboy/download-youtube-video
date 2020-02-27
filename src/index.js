@@ -1,12 +1,9 @@
 const core = require('@actions/core');
-const wait = require('./wait');
 const os = require('os');
 const path = require('path');
 const fse = require('fs-extra');
 const extra = require('execa')
 import {postRelease} from './util'
-
-
 import {bundleZip} from './zip'
 
 // most @actions toolkit packages have async methods
@@ -37,7 +34,7 @@ async function run() {
 
     await bundleZip(videoDir, zipPath)
 
-   await  postRelease(zipDir)
+   await  postRelease(zipPath)
 
     core.setOutput('time', new Date().toTimeString());
   } catch (error) {

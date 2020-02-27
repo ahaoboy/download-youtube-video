@@ -1,4 +1,4 @@
-name: 'Wait'
+name: 'download youtube video'
 description: 'Wait a designated number of milliseconds'
 inputs:
   # milliseconds:  # id of input

@@ -7931,7 +7931,6 @@ function bundleZip(fileDir, outputPath) {
       console.log(
         'archiver has been finalized and the output file descriptor has closed.'
       );
-      // reslove();
     });
 
     output.on('end', function() {
@@ -7952,13 +7951,10 @@ function bundleZip(fileDir, outputPath) {
 
 // CONCATENATED MODULE: ./src/index.js
 const src_core = __webpack_require__(131);
-const wait = __webpack_require__(369);
 const os = __webpack_require__(87);
 const src_path = __webpack_require__(622);
 const fse = __webpack_require__(583);
 const extra = __webpack_require__(186)
-
-
 
 
 
@@ -7990,7 +7986,7 @@ async function run() {
 
     await bundleZip(videoDir, zipPath)
 
-   await  postRelease(zipDir)
+   await  postRelease(zipPath)
 
     src_core.setOutput('time', new Date().toTimeString());
   } catch (error) {
@@ -12982,13 +12978,7 @@ module.exports = Octokit;
 
 
 /***/ }),
-/* 369 */
-/***/ (function() {
-
-eval("require")("./wait");
-
-
-/***/ }),
+/* 369 */,
 /* 370 */,
 /* 371 */,
 /* 372 */,

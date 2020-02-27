@@ -15,7 +15,6 @@ export function bundleZip(fileDir, outputPath) {
       console.log(
         'archiver has been finalized and the output file descriptor has closed.'
       );
-      // reslove();
     });
 
     output.on('end', function() {
