@@ -1,13 +1,42 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  # milliseconds:  # id of input
+  #   description: 'number of milliseconds to wait'
+  #   required: true
+  #   default: '1000'
+  url:
+    description: video full url example  https://www.youtube.com/watch?v=nn9jdwEkplc
     required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps 
-    description: 'The message to output'
+    default: ""
+  isList:
+    description: download video list   https://www.youtube.com/watch?v=nn9jdwEkplc
+    required: false
+    # default: false
+  isZip:
+    description: download video list   https://www.youtube.com/watch?v=nn9jdwEkplc
+    required: false
+
+  file:
+    description: 'File to upload to the release'
+    required: true
+  changelog:
+    description: 'Path to changelog file'
+    required: false
+
+env:
+  'GITHUB_TOKEN': 'Github Auth Token'
 runs:
   using: 'node12'
   main: 'dist/index.js'
+  
+branding:
+  color: 'green'
+  icon: 'package'
+outputs:
+  time: # output will be available to future steps 
+    description: 'The message to output'
+
+
+
+  
