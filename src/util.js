@@ -10,7 +10,7 @@ const github = {}
 async function postRelease(filePath)  {
   try {
     if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
-      throw new Error('A tag is required for GitHub Releases')
+      throw new Error('A tag is required for GitHnpmub Releases')
     }
 
     let changelog 

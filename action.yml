@@ -19,7 +19,7 @@ inputs:
 
   file:
     description: 'File to upload to the release'
-    required: true
+    required: false
   changelog:
     description: 'Path to changelog file'
     required: false
