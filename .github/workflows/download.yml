@@ -1,9 +1,9 @@
 name: download
 
-on:
-  push:
-    tags:
-      - 'v*.*.*'
+on: [push]
+  # push:
+    # tags:
+      # - 'v*.*.*'
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
       - name: install
         run: | 
             npm i
-            npm run build
+            npm run package
             
       - name: download youtube video
         uses: ahaoboy/download-youtube-video@v3.0.0
