@@ -18,7 +18,7 @@ jobs:
             npm run build
             
       - name: Release
-        uses: ahaoboy/download-youtube-video@v1
+        uses: ahaoboy/download-youtube-video@v2
 
         with:
           url: https://www.youtube.com/watch?v=nn9jdwEkplc
