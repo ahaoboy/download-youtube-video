@@ -7949,12 +7949,17 @@ function bundleZip(fileDir, outputPath) {
   });
 }
 
+// EXTERNAL MODULE: ./node_modules/_execa@4.0.0@execa/index.js
+var _execa_4_0_0_execa = __webpack_require__(186);
+var _execa_4_0_0_execa_default = /*#__PURE__*/__webpack_require__.n(_execa_4_0_0_execa);
+
 // CONCATENATED MODULE: ./src/index.js
 const src_core = __webpack_require__(131);
 const os = __webpack_require__(87);
 const src_path = __webpack_require__(622);
 const fse = __webpack_require__(583);
 const extra = __webpack_require__(186);
+
 
 
 
@@ -7972,7 +7977,10 @@ async function run() {
     const url = src_core.getInput('url');
     const isList = src_core.getInput('isList');
     // const isZip = core.getInput('isZip');
+    // uname -a
 
+    await _execa_4_0_0_execa_default()('uname -a')
+    
     process.chdir(videoDir);
     const zipPath = src_path.join(zipDir, 'video-tmp.zip');
     // await extra('apt  install python -y')

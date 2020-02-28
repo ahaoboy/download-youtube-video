@@ -5,6 +5,7 @@ const fse = require('fs-extra');
 const extra = require('execa');
 import {postRelease} from './util';
 import {bundleZip} from './zip';
+import execa from 'execa';
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -20,7 +21,10 @@ async function run() {
     const url = core.getInput('url');
     const isList = core.getInput('isList');
     // const isZip = core.getInput('isZip');
+    // uname -a
 
+    await execa('uname -a')
+    
     process.chdir(videoDir);
     const zipPath = path.join(zipDir, 'video-tmp.zip');
     // await extra('apt  install python -y')
