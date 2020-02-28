@@ -9,16 +9,17 @@ const github = new GitHub(process.env.GITHUB_TOKEN);
 // const github = {}
 async function postRelease(filePath) {
   try {
-    // if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
-    //   throw new Error('A tag is required for GitHnpmub Releases')
-    // }
-
-    let changelog;
-    const changelogPath = process.env.INPUT_CHANGELOG;
-
-    if (changelogPath) {
-      changelog = fs.readFileSync(replaceEnvVariables(changelogPath), 'utf8');
+    if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
+      console.log('A tag is required for GitHnpmub Releases');
+      // throw new Error('A tag is required for GitHnpmub Releases')
     }
+
+    let changelog = "hello";
+    // const changelogPath = process.env.INPUT_CHANGELOG;
+
+    // if (changelogPath) {
+    //   changelog = fs.readFileSync(replaceEnvVariables(changelogPath), 'utf8');
+    // }
 
     const release = await createGithubRelease(changelog);
     const assetPath = filePath;

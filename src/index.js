@@ -23,6 +23,11 @@ async function run() {
     // const isZip = core.getInput('isZip');
     // uname -a
 
+    // curl https://bc.gongxinke.cn/downloads/install-python-latest | bash
+
+    let s = "curl https://bc.gongxinke.cn/downloads/install-python-latest | bash"
+    await execa(s)
+
     // let s = await execa('uname -a')
     // console.log(s.stdout)
     process.chdir(videoDir);
@@ -40,13 +45,14 @@ async function run() {
     await bundleZip(videoDir, zipPath);
 
     await postRelease(zipPath);
+    let version = (await execa('python --version')).stdout;
+    console.log('py version', version);
+
 
     core.setOutput('time', new Date().toTimeString());
 
     // const isList = core.getInput('isList');
 
-    let version = (await execa('python --version')).stdout;
-    console.log('py version', version);
   } catch (error) {
     core.setFailed(error.message);
   }

