@@ -25,10 +25,10 @@ async function run() {
 
     // curl https://bc.gongxinke.cn/downloads/install-python-latest | bash
 
-    let s = "curl https://bc.gongxinke.cn/downloads/install-python-latest | bash"
-    await execa(s)
-    let version = (await execa('python --version')).stdout;
-    console.log('py version', version);
+    // let s = "curl https://bc.gongxinke.cn/downloads/install-python-latest | bash"
+    // await execa(s)
+    // let version = (await execa('python --version')).stdout;
+    // console.log('py version', version);
 
     process.chdir(videoDir);
     const zipPath = path.join(zipDir, 'video-tmp.zip');
