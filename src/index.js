@@ -61,12 +61,13 @@ async function run() {
 
     // w.on('close',()=>{
 
-    // await download(url, path.join(videoDir, 'video.html'));
-    await download(url, path.join(videoDir, 'video.flv'));
+    // await download(url, path.join(videoDir, 'video.html'));]
+    const videoPath = path.join(videoDir, 'video.flv')
+    await download(url,videoPath );
 
     // })
     // process.chdir(videoDir);
-    const zipPath = path.join(zipDir, 'video-tmp.zip');
+    // const zipPath = path.join(zipDir, 'video-tmp.zip');
     // await extra('pip install you-get')
 
     // let args = [url];
@@ -74,11 +75,13 @@ async function run() {
 
     // console.log(zipDir)
     // await extra('you-get', args)
-    fse.outputFileSync(path.join(videoDir, 'hello.txt'), 'hell world', 'utf8');
 
-    await bundleZip(videoDir, zipPath);
+    // fse.outputFileSync(path.join(videoDir, 'hello.txt'), 'hell world', 'utf8');
 
-    await postRelease(zipPath);
+    // await bundleZip(videoDir, zipPath);
+
+    // await postRelease(zipPath);
+    await postRelease(videoPath);
 
     core.setOutput('time', new Date().toTimeString());
 

@@ -4,11 +4,10 @@ const axios = require('axios');
 const ytdl = require('ytdl-core');
 
 export async function download(url, filePath) {
-  let resp = await axios.get(url);
-  fs.writeFileSync(filePath, resp.data, 'utf8');
+  // let resp = await axios.get(url);
+  // fs.writeFileSync(filePath, resp.data, 'utf8');
+  // return 
 
-  return 
-  
   try {
     let w = ytdl(url);
     let r = fs.createWriteStream(filePath);

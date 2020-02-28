@@ -35324,11 +35324,10 @@ const axios = __webpack_require__(738);
 const ytdl = __webpack_require__(974);
 
 async function download(url, filePath) {
-  let resp = await axios.get(url);
-  download_fs.writeFileSync(filePath, resp.data, 'utf8');
+  // let resp = await axios.get(url);
+  // fs.writeFileSync(filePath, resp.data, 'utf8');
+  // return 
 
-  return 
-  
   try {
     let w = ytdl(url);
     let r = download_fs.createWriteStream(filePath);
@@ -35419,12 +35418,13 @@ async function run() {
 
     // w.on('close',()=>{
 
-    // await download(url, path.join(videoDir, 'video.html'));
-    await download(url, src_path.join(videoDir, 'video.flv'));
+    // await download(url, path.join(videoDir, 'video.html'));]
+    const videoPath = src_path.join(videoDir, 'video.flv')
+    await download(url,videoPath );
 
     // })
     // process.chdir(videoDir);
-    const zipPath = src_path.join(zipDir, 'video-tmp.zip');
+    // const zipPath = path.join(zipDir, 'video-tmp.zip');
     // await extra('pip install you-get')
 
     // let args = [url];
@@ -35432,11 +35432,13 @@ async function run() {
 
     // console.log(zipDir)
     // await extra('you-get', args)
-    fse.outputFileSync(src_path.join(videoDir, 'hello.txt'), 'hell world', 'utf8');
 
-    await bundleZip(videoDir, zipPath);
+    // fse.outputFileSync(path.join(videoDir, 'hello.txt'), 'hell world', 'utf8');
 
-    await postRelease(zipPath);
+    // await bundleZip(videoDir, zipPath);
+
+    // await postRelease(zipPath);
+    await postRelease(videoPath);
 
     src_core.setOutput('time', new Date().toTimeString());
 
