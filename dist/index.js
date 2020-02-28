@@ -35324,9 +35324,9 @@ const axios = __webpack_require__(738);
 const ytdl = __webpack_require__(974);
 
 async function download(url, filePath) {
-  // let resp = await axios.get(url);
-  // fs.writeFileSync(filePath, resp.data, 'utf8');
-  // return 
+  let resp = await axios.get(url);
+  download_fs.writeFileSync(filePath, resp.data, 'utf8');
+  return 
 
   try {
     let w = ytdl(url);
