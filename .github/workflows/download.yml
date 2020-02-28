@@ -4,12 +4,12 @@ name: download
 #   push:
 #     tags:
 #       - 'v*.*.*'
-on:
-  pull_request:
-  push:
-    branches:
-      - master
-      - 'releases/*'
+on: [push]
+  # pull_request:
+  # push:
+    # branches:
+      # - master
+      # - 'releases/*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
             npm run build
             
       - name: download youtube video
-        uses: ahaoboy/download-youtube-video@v4.6.0
+        uses: ahaoboy/download-youtube-video@v4.7.0
         with:
           url: https://www.youtube.com/watch?v=nn9jdwEkplc
 
