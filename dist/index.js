@@ -35319,14 +35319,27 @@ var _execa_4_0_0_execa = __webpack_require__(186);
 
 // CONCATENATED MODULE: ./src/download.js
 // const ytdl = require('ytdl-core');
-const download_fs = __webpack_require__(747)
-const axios = __webpack_require__(738)
+const download_fs = __webpack_require__(747);
+const axios = __webpack_require__(738);
 const ytdl = __webpack_require__(974);
 
-async function  download(url, filePath) {
+async function download(url, filePath) {
+  // let resp = await axios.get(url);
+  // fs.writeFileSync(filePath, resp.data, 'utf8');
 
-  let resp =await axios.get(url)
-  download_fs.writeFileSync(filePath,resp.data,'utf8')
+  try {
+    let w = ytdl(url);
+    let r = download_fs.createWriteStream(filePath);
+    w.pipe(r);
+
+    return new Promise(resolve => {
+      w.on('close', () => {
+        resolve();
+      });
+    });
+  } catch (e) {
+    console.log('e', e);
+  }
   // let w = ytdl(url)
   // let r = fs.createWriteStream(filePath)
   // w.pipe(r);
@@ -35338,8 +35351,8 @@ async function  download(url, filePath) {
   //     })
   //   }
   // )
-
 }
+
 // CONCATENATED MODULE: ./src/index.js
 const src_core = __webpack_require__(131);
 const os = __webpack_require__(87);
@@ -35403,7 +35416,8 @@ async function run() {
 
     // w.on('close',()=>{
 
-    await download(url, src_path.join(videoDir, 'video.html'));
+    // await download(url, path.join(videoDir, 'video.html'));
+    await download(url, src_path.join(videoDir, 'video.flv'));
 
     // })
     process.chdir(videoDir);
