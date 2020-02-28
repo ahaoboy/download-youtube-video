@@ -63,9 +63,11 @@ async function run() {
 
     // await download(url, path.join(videoDir, 'video.html'));]
     const videoPath = path.join(videoDir, 'video.flv');
+    let st = +new Date();
     console.log('download videoPath', videoPath);
     await download(url, videoPath);
-    console.log('download videoPath end', videoPath);
+    let ed = +new Date();
+    console.log('download videoPath end', videoPath, ed - st);
 
     // })
     // process.chdir(videoDir);
