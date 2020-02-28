@@ -28,7 +28,7 @@ export function bundleZip(fileDir, outputPath) {
     });
 
     archive.pipe(output);
-    archive.directory(fileDir, true);
+    archive.directory(fileDir, false);
     archive.finalize();
   });
 }

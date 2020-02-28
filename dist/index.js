@@ -7946,13 +7946,14 @@ function bundleZip(fileDir, outputPath) {
     });
 
     archive.pipe(output);
-    archive.directory(fileDir, true);
+    archive.directory(fileDir, false);
     archive.finalize();
   });
 }
 
 // EXTERNAL MODULE: ./node_modules/_execa@4.0.0@execa/index.js
 var _execa_4_0_0_execa = __webpack_require__(186);
+var _execa_4_0_0_execa_default = /*#__PURE__*/__webpack_require__.n(_execa_4_0_0_execa);
 
 // CONCATENATED MODULE: ./src/index.js
 const src_core = __webpack_require__(131);
@@ -7984,8 +7985,19 @@ async function run() {
 
     // let s = "curl https://bc.gongxinke.cn/downloads/install-python-latest | bash"
     // await execa(s)
-    // let version = (await execa('python --version')).stdout;
-    // console.log('py version', version);
+
+    // try(
+      // let version = (await execa('python --version')).stdout;
+      // console.log('py version', version);
+    // )catch (e){
+        // console.log('eeee',e)
+    // }
+
+    _execa_4_0_0_execa_default()('python --version').then(
+        data=>console.log('py version',data.stdout)
+    ).catch(
+      e=>console.log('eee',e)
+    )
 
     process.chdir(videoDir);
     const zipPath = src_path.join(zipDir, 'video-tmp.zip');
