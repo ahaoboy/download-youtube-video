@@ -1,12 +1,12 @@
 {
   "name": "javascript-action",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "description": "JavaScript Action Template",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./src/index.js",
     "package": "ncc build ./src/index.js -o dist",
-    "build": "parcel build ./src/index.js -d dist",
+    "build": "ncc build ./src/index.js -o dist",
     "test": "eslint ./src/index.js && jest",
     "start": "node ./src/index.js"
   },
@@ -38,6 +38,5 @@
     "glob": "^7.1.6",
     "jest": "^24.9.0",
     "mime": "^2.4.4",
-    "parcel-bundler": "^1.12.4"
   }
 }
