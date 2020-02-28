@@ -30,7 +30,7 @@ runs:
   # using: 'node12'
   # main: 'dist/index.js'
   using: 'docker'
-  image: 'docker://ubuntu:lastest'
+  image: 'docker://ubuntu:latest'
   # main: 'dist/index.js'
   
 branding:
