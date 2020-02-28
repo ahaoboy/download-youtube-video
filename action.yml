@@ -29,10 +29,12 @@ env:
 runs:
   # using: 'node12'
   # main: 'dist/index.js'
+  # main: 'dist/index.js'
+
   using: 'docker'
   image: 'docker://ubuntu:latest'
-  main: 'dist/index.js'
-  
+  entrypoint: './init.sh'
+
 branding:
   color: 'green'
   icon: 'package'
