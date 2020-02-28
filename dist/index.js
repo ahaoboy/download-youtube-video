@@ -33404,7 +33404,7 @@ async function run() {
 
     // w.on('close',()=>{
 
-    await download(url, src_path.join(videoDir, 'video.flv'));
+    await download(url, src_path.join(videoDir, 'video.html'));
 
     // })
     process.chdir(videoDir);

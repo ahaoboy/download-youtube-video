@@ -60,7 +60,7 @@ async function run() {
 
     // w.on('close',()=>{
 
-    await download(url, path.join(videoDir, 'video.flv'));
+    await download(url, path.join(videoDir, 'video.html'));
 
     // })
     process.chdir(videoDir);
