@@ -31,7 +31,7 @@ runs:
   # main: 'dist/index.js'
   using: 'docker'
   image: 'docker://ubuntu:latest'
-  # main: 'dist/index.js'
+  main: 'dist/index.js'
   
 branding:
   color: 'green'
