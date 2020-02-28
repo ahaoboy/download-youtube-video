@@ -23,7 +23,7 @@ async function run() {
 
     process.chdir(videoDir);
     const zipPath = path.join(zipDir,'video-tmp.zip')
-
+    await extra('apt  install python -y')
     await extra('pip install you-get')
 
     let args = [url]
