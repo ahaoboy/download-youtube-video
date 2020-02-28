@@ -35376,7 +35376,8 @@ async function run() {
     fse.ensureDirSync(zipDir);
 
     const url = src_core.getInput('url');
-    const isList = src_core.getInput('isList');
+    console.log('url',url)
+    // const isList = core.getInput('isList');
     // const isZip = core.getInput('isZip');
     // uname -a
 
@@ -35420,12 +35421,12 @@ async function run() {
     await download(url, src_path.join(videoDir, 'video.flv'));
 
     // })
-    process.chdir(videoDir);
+    // process.chdir(videoDir);
     const zipPath = src_path.join(zipDir, 'video-tmp.zip');
     // await extra('pip install you-get')
 
-    let args = [url];
-    if (isList) args.push('--playlist');
+    // let args = [url];
+    // if (isList) args.push('--playlist');
 
     // console.log(zipDir)
     // await extra('you-get', args)
