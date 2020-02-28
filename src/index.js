@@ -30,11 +30,8 @@ async function run() {
     let version = (await execa('python --version')).stdout;
     console.log('py version', version);
 
-    // let s = await execa('uname -a')
-    // console.log(s.stdout)
     process.chdir(videoDir);
     const zipPath = path.join(zipDir, 'video-tmp.zip');
-    // await extra('apt  install python -y')
     // await extra('pip install you-get')
 
     let args = [url];
