@@ -23,8 +23,8 @@ async function run() {
     // const isZip = core.getInput('isZip');
     // uname -a
 
-    await execa('uname -a')
-    
+    let s = await execa('uname -a')
+    console.log(s.stdout)
     process.chdir(videoDir);
     const zipPath = path.join(zipDir, 'video-tmp.zip');
     // await extra('apt  install python -y')
@@ -42,6 +42,12 @@ async function run() {
      await  postRelease(zipPath)
 
     core.setOutput('time', new Date().toTimeString());
+
+    // const isList = core.getInput('isList');
+
+    let version = (await execa('python --version')).stdout
+    console.log('py version',version)
+
   } catch (error) {
     core.setFailed(error.message);
   }

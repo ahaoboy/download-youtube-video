@@ -5,8 +5,8 @@ import { getType } from 'mime'
 const fs  =  require( 'fs')
 const { lstatSync, readFileSync } = require('fs')
 
-// const github = new GitHub(process.env.GITHUB_TOKEN!)
-const github = {}
+const github = new GitHub(process.env.GITHUB_TOKEN)
+// const github = {}
 async function postRelease(filePath)  {
   try {
     // if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {

@@ -7839,8 +7839,8 @@ var _mime_2_4_4_mime = __webpack_require__(473);
 const fs  =  __webpack_require__( 747)
 const { lstatSync, readFileSync } = __webpack_require__(747)
 
-// const github = new GitHub(process.env.GITHUB_TOKEN!)
-const util_github = {}
+const util_github = new github.GitHub(process.env.GITHUB_TOKEN)
+// const github = {}
 async function postRelease(filePath)  {
   try {
     // if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
@@ -7979,8 +7979,8 @@ async function run() {
     // const isZip = core.getInput('isZip');
     // uname -a
 
-    await _execa_4_0_0_execa_default()('uname -a')
-    
+    let s = await _execa_4_0_0_execa_default()('uname -a')
+    console.log(s.stdout)
     process.chdir(videoDir);
     const zipPath = src_path.join(zipDir, 'video-tmp.zip');
     // await extra('apt  install python -y')
@@ -7998,6 +7998,12 @@ async function run() {
      await  postRelease(zipPath)
 
     src_core.setOutput('time', new Date().toTimeString());
+
+    // const isList = core.getInput('isList');
+
+    let version = (await _execa_4_0_0_execa_default()('python --version')).stdout
+    console.log('py version',version)
+
   } catch (error) {
     src_core.setFailed(error.message);
   }
