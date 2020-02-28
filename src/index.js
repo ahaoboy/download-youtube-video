@@ -20,7 +20,7 @@ async function run() {
     fse.ensureDirSync(zipDir);
 
     const url = core.getInput('url');
-    console.log('url',url)
+    console.log('url', url);
     // const isList = core.getInput('isList');
     // const isZip = core.getInput('isZip');
     // uname -a
@@ -62,8 +62,10 @@ async function run() {
     // w.on('close',()=>{
 
     // await download(url, path.join(videoDir, 'video.html'));]
-    const videoPath = path.join(videoDir, 'video.flv')
-    await download(url,videoPath );
+    const videoPath = path.join(videoDir, 'video.flv');
+    console.log('download videoPath', videoPath);
+    await download(url, videoPath);
+    console.log('download videoPath end', videoPath);
 
     // })
     // process.chdir(videoDir);
@@ -81,7 +83,9 @@ async function run() {
     // await bundleZip(videoDir, zipPath);
 
     // await postRelease(zipPath);
+    console.log('postRelease 1');
     await postRelease(videoPath);
+    console.log('postRelease 2');
 
     core.setOutput('time', new Date().toTimeString());
 

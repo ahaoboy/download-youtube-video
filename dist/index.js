@@ -35324,23 +35324,20 @@ const axios = __webpack_require__(738);
 const ytdl = __webpack_require__(974);
 
 async function download(url, filePath) {
-  let resp = await axios.get(url);
-  download_fs.writeFileSync(filePath, resp.data, 'utf8');
-  return 
+  // let resp = await axios.get(url);
+  // fs.writeFileSync(filePath, resp.data, 'utf8');
+  // return
 
-  try {
-    let w = ytdl(url);
-    let r = download_fs.createWriteStream(filePath);
-    w.pipe(r);
+  let w = ytdl(url);
+  let r = download_fs.createWriteStream(filePath);
+  w.pipe(r);
 
-    return new Promise(resolve => {
-      w.on('close', () => {
-        resolve();
-      });
+  return new Promise(resolve => {
+    w.on('close', () => {
+      resolve();
     });
-  } catch (e) {
-    console.log('e', e);
-  }
+  });
+  
   // let w = ytdl(url)
   // let r = fs.createWriteStream(filePath)
   // w.pipe(r);
@@ -35377,7 +35374,7 @@ async function run() {
     fse.ensureDirSync(zipDir);
 
     const url = src_core.getInput('url');
-    console.log('url',url)
+    console.log('url', url);
     // const isList = core.getInput('isList');
     // const isZip = core.getInput('isZip');
     // uname -a
@@ -35419,8 +35416,10 @@ async function run() {
     // w.on('close',()=>{
 
     // await download(url, path.join(videoDir, 'video.html'));]
-    const videoPath = src_path.join(videoDir, 'video.flv')
-    await download(url,videoPath );
+    const videoPath = src_path.join(videoDir, 'video.flv');
+    console.log('download videoPath', videoPath);
+    await download(url, videoPath);
+    console.log('download videoPath end', videoPath);
 
     // })
     // process.chdir(videoDir);
@@ -35438,7 +35437,9 @@ async function run() {
     // await bundleZip(videoDir, zipPath);
 
     // await postRelease(zipPath);
+    console.log('postRelease 1');
     await postRelease(videoPath);
+    console.log('postRelease 2');
 
     src_core.setOutput('time', new Date().toTimeString());
 

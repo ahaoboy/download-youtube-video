@@ -23,7 +23,7 @@ jobs:
             npm run build
             
       - name: download youtube video
-        uses: ahaoboy/download-youtube-video@v5.1.0
+        uses: ahaoboy/download-youtube-video@v5.2.0
         with:
           url: https://www.youtube.com/watch?v=nn9jdwEkplc
 
