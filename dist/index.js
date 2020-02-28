@@ -35266,7 +35266,7 @@ async function uploadAsset(url, asset) {
       'content-type': asset.mime,
     },
     name: asset.name,
-    file: asset.file,
+    data: asset.file,
   });
 }
 
