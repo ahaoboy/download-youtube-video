@@ -7843,9 +7843,9 @@ const { lstatSync, readFileSync } = __webpack_require__(747)
 const util_github = {}
 async function postRelease(filePath)  {
   try {
-    if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
-      throw new Error('A tag is required for GitHnpmub Releases')
-    }
+    // if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
+    //   throw new Error('A tag is required for GitHnpmub Releases')
+    // }
 
     let changelog 
     const changelogPath = process.env.INPUT_CHANGELOG
@@ -7954,7 +7954,7 @@ const src_core = __webpack_require__(131);
 const os = __webpack_require__(87);
 const src_path = __webpack_require__(622);
 const fse = __webpack_require__(583);
-const extra = __webpack_require__(186)
+const extra = __webpack_require__(186);
 
 
 
@@ -7962,31 +7962,32 @@ const extra = __webpack_require__(186)
 async function run() {
   try {
     const currentdir = src_path.resolve('.');
-    const tmpDir =src_path.join(os.tmpdir(), '-youtube-video');
-    const videoDir = src_path.join(tmpDir,'video')
-    const zipDir = src_path.join(tmpDir,'zip')
-    
-    fse.ensureDirSync(videoDir)
-    fse.ensureDirSync(zipDir)
+    const tmpDir = src_path.join(os.tmpdir(), '-youtube-video');
+    const videoDir = src_path.join(tmpDir, 'video');
+    const zipDir = src_path.join(tmpDir, 'zip');
+
+    fse.ensureDirSync(videoDir);
+    fse.ensureDirSync(zipDir);
 
     const url = src_core.getInput('url');
     const isList = src_core.getInput('isList');
     // const isZip = core.getInput('isZip');
 
     process.chdir(videoDir);
-    const zipPath = src_path.join(zipDir,'video-tmp.zip')
+    const zipPath = src_path.join(zipDir, 'video-tmp.zip');
+    // await extra('apt  install python -y')
+    // await extra('pip install you-get')
 
-    await extra('pip install you-get')
+    let args = [url];
+    if (isList) args.push('--playlist');
 
-    let args = [url]
-    if(isList)
-      args.push('--playlist')
+    // console.log(zipDir)
+    // await extra('you-get', args)
+    fse.outputFileSync(src_path.join(videoDir, 'hello.txt'), 'hello', 'utf8');
 
-    await extra('you-get', args)
+    await bundleZip(videoDir, zipPath);
 
-    await bundleZip(videoDir, zipPath)
-
-   await  postRelease(zipPath)
+     await  postRelease(zipPath)
 
     src_core.setOutput('time', new Date().toTimeString());
   } catch (error) {
