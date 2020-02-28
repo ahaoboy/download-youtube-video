@@ -7979,8 +7979,8 @@ async function run() {
     // const isZip = core.getInput('isZip');
     // uname -a
 
-    let s = await _execa_4_0_0_execa_default()('uname -a')
-    console.log(s.stdout)
+    // let s = await execa('uname -a')
+    // console.log(s.stdout)
     process.chdir(videoDir);
     const zipPath = src_path.join(zipDir, 'video-tmp.zip');
     // await extra('apt  install python -y')
