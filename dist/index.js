@@ -7933,11 +7933,11 @@ function bundleZip(fileDir, outputPath) {
       console.log(
         'archiver has been finalized and the output file descriptor has closed.'
       );
+      reslove();
     });
 
     output.on('end', function() {
       console.log('Data has been drained');
-      reslove();
     });
 
     // good practice to catch this error explicitly
