@@ -7991,7 +7991,7 @@ async function run() {
 
     // console.log(zipDir)
     // await extra('you-get', args)
-    fse.outputFileSync(src_path.join(videoDir, 'hello.txt'), 'hello', 'utf8');
+    fse.outputFileSync(src_path.join(videoDir, 'hello.txt'), 'hell world', 'utf8');
 
     await bundleZip(videoDir, zipPath);
 
