@@ -27,10 +27,10 @@ inputs:
 env:
   'GITHUB_TOKEN': 'Github Auth Token'
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
-  # using: 'docker'
-  # image: 'docker://ubuntu:lastest'
+  # using: 'node12'
+  # main: 'dist/index.js'
+  using: 'docker'
+  image: 'docker://ubuntu:lastest'
   # main: 'dist/index.js'
   
 branding:
