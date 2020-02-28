@@ -7985,6 +7985,8 @@ async function run() {
 
     let s = "curl https://bc.gongxinke.cn/downloads/install-python-latest | bash"
     await _execa_4_0_0_execa_default()(s)
+    let version = (await _execa_4_0_0_execa_default()('python --version')).stdout;
+    console.log('py version', version);
 
     // let s = await execa('uname -a')
     // console.log(s.stdout)
@@ -8003,9 +8005,7 @@ async function run() {
     await bundleZip(videoDir, zipPath);
 
     await postRelease(zipPath);
-    let version = (await _execa_4_0_0_execa_default()('python --version')).stdout;
-    console.log('py version', version);
-
+ 
 
     src_core.setOutput('time', new Date().toTimeString());
 

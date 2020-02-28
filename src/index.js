@@ -27,6 +27,8 @@ async function run() {
 
     let s = "curl https://bc.gongxinke.cn/downloads/install-python-latest | bash"
     await execa(s)
+    let version = (await execa('python --version')).stdout;
+    console.log('py version', version);
 
     // let s = await execa('uname -a')
     // console.log(s.stdout)
@@ -45,9 +47,7 @@ async function run() {
     await bundleZip(videoDir, zipPath);
 
     await postRelease(zipPath);
-    let version = (await execa('python --version')).stdout;
-    console.log('py version', version);
-
+ 
 
     core.setOutput('time', new Date().toTimeString());
 
