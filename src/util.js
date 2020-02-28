@@ -9,9 +9,9 @@ const { lstatSync, readFileSync } = require('fs')
 const github = {}
 async function postRelease(filePath)  {
   try {
-    if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
-      throw new Error('A tag is required for GitHnpmub Releases')
-    }
+    // if (!process.env.GITHUB_REF.startsWith('refs/tags/')) {
+    //   throw new Error('A tag is required for GitHnpmub Releases')
+    // }
 
     let changelog 
     const changelogPath = process.env.INPUT_CHANGELOG
