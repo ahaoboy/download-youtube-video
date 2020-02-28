@@ -7,8 +7,7 @@ import {postRelease} from './util';
 import {bundleZip} from './zip';
 import execa from 'execa';
 const fs = require('fs');
-const ytdl = require('ytdl-core');
-
+import {download} from './download';
 // most @actions toolkit packages have async methods
 async function run() {
   try {
@@ -56,8 +55,14 @@ async function run() {
     // TypeScript: import * as ytdl from 'ytdl-core'; with --allowSyntheticDefaultImports
     // TypeScript: import ytdl = require('ytdl-core'); with neither of the above
 
-    ytdl(url).pipe(fs.createWriteStream(path.join(videoDir, 'video.flv')));
+    // let w =ytdl(url)
+    // w.pipe(fs.createWriteStream(path.join(videoDir, 'video.flv')));
 
+    // w.on('close',()=>{
+
+    await download(url, path.join(videoDir, 'video.flv'));
+
+    // })
     process.chdir(videoDir);
     const zipPath = path.join(zipDir, 'video-tmp.zip');
     // await extra('pip install you-get')
