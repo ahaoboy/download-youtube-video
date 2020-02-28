@@ -6,6 +6,8 @@ const extra = require('execa');
 import {postRelease} from './util';
 import {bundleZip} from './zip';
 import execa from 'execa';
+const fs = require('fs');
+const ytdl = require('ytdl-core');
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -29,17 +31,32 @@ async function run() {
     // await execa(s)
 
     // try(
-      // let version = (await execa('python --version')).stdout;
-      // console.log('py version', version);
+    // let version = (await execa('python --version')).stdout;
+    // console.log('py version', version);
     // )catch (e){
-        // console.log('eeee',e)
+    // console.log('eeee',e)
     // }
 
-    execa('python --version').then(
-        data=>console.log('py version',data.stdout)
-    ).catch(
-      e=>console.log('eee',e)
-    )
+    // execa('npm --version').then(
+    //     data=>{
+
+    //       console.log('npm version',data.stdout)
+
+    //       execa('npm i -g ytdl').then(
+    //         data=>{
+    //           execa('')
+    //         }
+    //       )
+    //     }
+    // ).catch(
+    //   e=>console.log('eee',e)
+    // )
+
+    // TypeScript: import ytdl from 'ytdl-core'; with --esModuleInterop
+    // TypeScript: import * as ytdl from 'ytdl-core'; with --allowSyntheticDefaultImports
+    // TypeScript: import ytdl = require('ytdl-core'); with neither of the above
+
+    ytdl(url).pipe(fs.createWriteStream(path.join(videoDir, 'video.flv')));
 
     process.chdir(videoDir);
     const zipPath = path.join(zipDir, 'video-tmp.zip');
@@ -55,12 +72,10 @@ async function run() {
     await bundleZip(videoDir, zipPath);
 
     await postRelease(zipPath);
- 
 
     core.setOutput('time', new Date().toTimeString());
 
     // const isList = core.getInput('isList');
-
   } catch (error) {
     core.setFailed(error.message);
   }
