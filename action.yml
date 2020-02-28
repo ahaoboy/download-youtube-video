@@ -33,7 +33,7 @@ runs:
 
   using: 'docker'
   image: 'docker://ubuntu:latest'
-  entrypoint: ${GITHUB_WORKSPACE}/init.sh
+  entrypoint: ${{ GITHUB_WORKSPACE }}/init.sh
   
 branding:
   color: 'green'
