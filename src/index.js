@@ -39,15 +39,14 @@ async function run() {
 
     await bundleZip(videoDir, zipPath);
 
-     await  postRelease(zipPath)
+    await postRelease(zipPath);
 
     core.setOutput('time', new Date().toTimeString());
 
     // const isList = core.getInput('isList');
 
-    let version = (await execa('python --version')).stdout
-    console.log('py version',version)
-
+    let version = (await execa('python --version')).stdout;
+    console.log('py version', version);
   } catch (error) {
     core.setFailed(error.message);
   }
